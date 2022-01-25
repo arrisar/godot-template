@@ -1,0 +1,28 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+[application]
+
+config/name="Local Client-Server Template"
+run/main_scene="res://Main/Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Server="*res://Lib/Multiplayer/Server.gd"
+Client="*res://Lib/Multiplayer/Client.gd"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
