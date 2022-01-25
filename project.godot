@@ -17,8 +17,13 @@ config/icon="res://icon.png"
 [autoload]
 
 Config="*res://Lib/Config.gd"
+Audio="*res://Lib/Audio.gd"
 Server="*res://Lib/Multiplayer/Server.gd"
 Client="*res://Lib/Multiplayer/Client.gd"
+
+[defaults]
+
+audio/master_volume=1.0
 
 [physics]
 

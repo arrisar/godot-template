@@ -4,12 +4,11 @@ extends Node
 signal updated(path)
 
 
+var DebounceTimer : Timer
 var Files := {
-	system = { path = 'user://system.ini' },
-	user = { path = 'user://user.ini' },
+	system = { path = 'user://config/system.ini' },
+	user = { path = 'user://config/user.ini' },
 }
-
-var Debounce : Timer
 
 
 func _ready() -> void:
@@ -21,9 +20,10 @@ func _ready() -> void:
 func _init_debounce() -> void:
 	print('[Config] Initializing debounce')
 	var timer = Timer.new()
+	timer.name = 'DebounceSaveTimer'
 	timer.wait_time = 1
 	timer.connect('timeout', self, 'save')
-	Debounce = add_child(timer)
+	DebounceTimer = add_child(timer)
 
 
 func _load() -> void:
@@ -47,8 +47,9 @@ func get(path: String, default = null):
 	var parts = _get_parts(path)
 
 	if default == null:
-		default = ProjectSettings.get_setting("defaults/" + path)
-
+		var setting: String = "defaults/%s/%s" % [parts.section, parts.key]
+		default = ProjectSettings.get_setting(setting)
+	
 	return Files[parts.file].config.get_value(parts.section, parts.key, default)
 
 
@@ -56,7 +57,7 @@ func set(path: String, value) -> void:
 	var parts = _get_parts(path)
 	Files[parts.file].config.set_value(parts.section, parts.key, value)
 	emit_signal('updated', path)
-	Debounce.start()
+	DebounceTimer.start()
 
 
 func save() -> void:
