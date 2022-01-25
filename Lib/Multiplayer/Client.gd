@@ -13,6 +13,10 @@ func _ready():
 	_connect()
 
 
+func _exit_tree():
+	_disconnect()
+
+
 func _connect():
 	multiplayer.connect('server_disconnected', self, '_on_connection_closed')
 	multiplayer.connect('connection_failed', self, '_on_connection_failed')
@@ -21,10 +25,17 @@ func _connect():
 	multiplayer.connect('network_peer_disconnected', self, '_on_peer_disconnected')
 
 
+func _disconnect():
+	multiplayer.disconnect('server_disconnected', self, '_on_connection_closed')
+	multiplayer.disconnect('connection_failed', self, '_on_connection_failed')
+	multiplayer.disconnect('connected_to_server', self, '_on_connection_success')
+	multiplayer.disconnect('network_peer_connected', self, '_on_peer_connected')
+	multiplayer.disconnect('network_peer_disconnected', self, '_on_peer_disconnected')
+
+
 func create():
 	print('[Client] Creating')
 	_create_client(host, port)
-	print('[Client] Created')
 
 
 func _on_connection_closed():

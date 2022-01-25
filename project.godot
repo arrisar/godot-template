@@ -16,6 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Config="*res://Lib/Config.gd"
 Server="*res://Lib/Multiplayer/Server.gd"
 Client="*res://Lib/Multiplayer/Client.gd"
 

@@ -10,15 +10,23 @@ func _ready():
 	_connect()
 
 
+func _exit_tree():
+	_disconnect()
+
+
 func _connect():
 	multiplayer.connect('network_peer_connected', self, '_on_peer_connected')
 	multiplayer.connect('network_peer_disconnected', self, '_on_peer_disconnected')
 
 
+func _disconnect():
+	multiplayer.disconnect('network_peer_connected', self, '_on_peer_connected')
+	multiplayer.disconnect('network_peer_disconnected', self, '_on_peer_disconnected')
+
+
 func create():
 	print('[Server] Creating')
 	_create_server(port, max_players)
-	print('[Server] Created')
 
 
 func _on_peer_connected(id):
