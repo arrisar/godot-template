@@ -1,0 +1,9 @@
+# Godot
+.import/
+.export/
+export.cfg
+export_presets.cfg
+
+# Mono
+.mono/
+data_*/
