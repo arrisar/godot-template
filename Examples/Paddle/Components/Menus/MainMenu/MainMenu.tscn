@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Examples/Paddle/Assets/Themes/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Examples/Paddle/Assets/Themes/Title.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Examples/Paddle/Components/Menus/Button/Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Examples/Paddle/Components/Menus/MainMenu/MainMenu.gd" type="Script" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_left = 424.0
+margin_top = 64.0
+margin_right = 600.0
+margin_bottom = 136.0
+custom_fonts/font = ExtResource( 2 )
+text = "PADDLE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" parent="." instance=ExtResource( 3 )]
+margin_left = 488.0
+margin_top = 256.0
+margin_right = 536.0
+margin_bottom = 280.0
+text = "PLAY"
+
+[node name="HostButton" parent="." instance=ExtResource( 3 )]
+margin_left = 468.0
+margin_top = 296.0
+margin_right = 556.0
+margin_bottom = 320.0
+text = "HOST GAME"
+
+[node name="JoinButton" parent="." instance=ExtResource( 3 )]
+margin_left = 472.0
+margin_top = 336.0
+margin_right = 552.0
+margin_bottom = 360.0
+text = "JOIN GAME"
+
+[node name="SettingsButton" parent="." instance=ExtResource( 3 )]
+margin_left = 476.0
+margin_top = 376.0
+margin_right = 548.0
+margin_bottom = 400.0
+text = "SETTINGS"
+
+[node name="ExitButton" parent="." instance=ExtResource( 3 )]
+margin_left = 496.0
+margin_top = 416.0
+margin_right = 528.0
+margin_bottom = 440.0
+text = "EXIT"

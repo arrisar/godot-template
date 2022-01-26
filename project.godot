@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Local Client-Server Template"
-run/main_scene="res://Main/Main.tscn"
+run/main_scene="res://Examples/Paddle/Main/Main.tscn"
 config/icon="res://icon.png"
+
+[audio]
+
+default_bus_layout="res://DefaultBusLayout.tres"
 
 [autoload]
 
@@ -20,6 +24,7 @@ Config="*res://Lib/Config.gd"
 Audio="*res://Lib/Audio.gd"
 Server="*res://Lib/Multiplayer/Server.gd"
 Client="*res://Lib/Multiplayer/Client.gd"
+Menu="*res://Lib/Menu.gd"
 
 [defaults]
 
@@ -31,4 +36,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://DefaultEnv.tres"

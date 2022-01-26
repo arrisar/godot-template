@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ButtonClick.wav-f69b8adb810bb7a9b1d70a6c8aa9d327.sample"
+
+[deps]
+
+source_file="res://Examples/Paddle/Assets/Audio/ButtonClick.wav"
+dest_files=[ "res://.import/ButtonClick.wav-f69b8adb810bb7a9b1d70a6c8aa9d327.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
