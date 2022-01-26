@@ -11,6 +11,8 @@ func _ready():
 func _init_audio():
 	Audio.add_bus('Music')
 	Audio.add_bus('Effects')
+	$Music/MenuMusic.bus = 'Music'
+	$Music/GameMusic.bus = 'Music'
 
 
 func _init_menus():
