@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Examples/Paddle/Assets/Themes/Heading.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Examples/Paddle/Assets/Themes/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://Examples/Paddle/Components/Menus/Button/Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Examples/Paddle/Components/Menus/SettingsMenu/SettingsMenu.gd" type="Script" id=4]
+
+[node name="SettingsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.12549, 0.12549, 0.12549, 0.25098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 413.0
+margin_top = 191.0
+margin_right = 669.0
+margin_bottom = 447.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel"]
+margin_left = 80.0
+margin_top = 16.0
+margin_right = 176.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 1 )
+text = "SETTINGS"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolumeLabel" type="Label" parent="Panel"]
+margin_left = 24.0
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 88.0
+text = "Master"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolumeSlider" type="HSlider" parent="Panel"]
+margin_left = 128.0
+margin_top = 64.0
+margin_right = 233.0
+margin_bottom = 88.0
+max_value = 1.0
+step = 0.05
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicVolumeLabel" type="Label" parent="Panel"]
+margin_left = 24.0
+margin_top = 96.0
+margin_right = 88.0
+margin_bottom = 120.0
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Panel"]
+margin_left = 128.0
+margin_top = 96.0
+margin_right = 233.0
+margin_bottom = 120.0
+max_value = 1.0
+step = 0.05
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EffectsVolumeLabel" type="Label" parent="Panel"]
+margin_left = 24.0
+margin_top = 128.0
+margin_right = 88.0
+margin_bottom = 152.0
+text = "Effects"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EffectsVolumeSlider" type="HSlider" parent="Panel"]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 233.0
+margin_bottom = 152.0
+max_value = 1.0
+step = 0.05
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ApplyButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 192.0
+margin_top = 216.0
+margin_right = 240.0
+margin_bottom = 242.0
+text = "APPLY"
+
+[node name="BackButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 24.0
+margin_top = 216.0
+margin_right = 56.0
+margin_bottom = 242.0
+text = "BACK"

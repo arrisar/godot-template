@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Local Client-Server Template"
+config/name="Template Libs and Examples"
 run/main_scene="res://Examples/Paddle/Main/Main.tscn"
 config/icon="res://icon.png"
 

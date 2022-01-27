@@ -2,23 +2,29 @@ extends CanvasLayer
 
 
 var MENUS: Dictionary = {}
-var current: String
-
-
-func _reset():
-	for child in get_children():
-		child.erase()
 
 
 func register(menu, path):
 	MENUS[menu] = path
 
 
+func deregister(menu):
+	MENUS.erase(menu)
+	close(menu)
+
+
 func open(menu):
-	_reset()
+	close(menu)
 	var instance: Node = load(MENUS[menu]).instance()
+	instance.name = menu
 	add_child(instance)
 
 
-func close():
-	_reset()
+func close(menu):
+	for child in get_children():
+		if child.name == menu: child.queue_free()
+
+
+func close_all():
+	for child in get_children():
+		child.queue_free()

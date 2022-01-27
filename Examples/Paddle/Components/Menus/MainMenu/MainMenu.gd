@@ -30,7 +30,7 @@ func _on_click_join():
 
 
 func _on_click_settings():
-	pass
+	Menu.open('Settings')
 
 
 func _on_click_exit():
