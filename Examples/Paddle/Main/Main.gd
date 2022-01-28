@@ -32,3 +32,8 @@ func _register_menus():
 func _start():
 	Menu.open('Main')
 	$Music/MenuMusic.play()
+
+
+func _mount_game():
+	Menu.open('Main')
+	$Music/MenuMusic.play()
