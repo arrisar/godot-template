@@ -1,31 +1,33 @@
 extends Node
 
 
-var network : NetworkedMultiplayerENet = null
+var network: NetworkedMultiplayerENet
 
 
-func _init():
+func _init() -> void:
 	custom_multiplayer = MultiplayerAPI.new()
 	custom_multiplayer.set_root_node(self)
 
 
-func _process(_delta):
-	if custom_multiplayer.has_network_peer() : custom_multiplayer.poll()
+func _process(_delta: float) -> void:
+	if custom_multiplayer.has_network_peer():
+		custom_multiplayer.poll()
 
 
-func _create_server(port, max_players):
+func _create_server(port: int, max_players: int) -> void:
 	network = NetworkedMultiplayerENet.new()
 	network.create_server(port, max_players)
 	multiplayer.set_network_peer(network)
 
 
-func _create_client(host, port):
+func _create_client(host: String, port: int) -> void:
 	network = NetworkedMultiplayerENet.new()
 	network.create_client(host, port)
 	multiplayer.set_network_peer(network)
 
 
-func close(wait = 0):
-	network.close_connection(wait)
-	custom_multiplayer.set_network_peer(null)
-	network = null
+func close(wait: int = 0):
+	if network != null:
+		network.close_connection(wait)
+		custom_multiplayer.set_network_peer(null)
+		network = null

@@ -36,35 +36,35 @@ __meta__ = {
 
 [node name="PlayButton" parent="." instance=ExtResource( 3 )]
 margin_left = 488.0
-margin_top = 256.0
+margin_top = 224.0
 margin_right = 536.0
-margin_bottom = 280.0
+margin_bottom = 250.0
 text = "PLAY"
 
 [node name="HostButton" parent="." instance=ExtResource( 3 )]
 margin_left = 468.0
-margin_top = 296.0
+margin_top = 264.0
 margin_right = 556.0
-margin_bottom = 320.0
+margin_bottom = 290.0
 text = "HOST GAME"
 
 [node name="JoinButton" parent="." instance=ExtResource( 3 )]
-margin_left = 472.0
-margin_top = 336.0
-margin_right = 552.0
-margin_bottom = 360.0
+margin_left = 471.0
+margin_top = 304.0
+margin_right = 551.0
+margin_bottom = 330.0
 text = "JOIN GAME"
 
 [node name="SettingsButton" parent="." instance=ExtResource( 3 )]
-margin_left = 476.0
-margin_top = 376.0
-margin_right = 548.0
-margin_bottom = 400.0
+margin_left = 477.0
+margin_top = 344.0
+margin_right = 549.0
+margin_bottom = 370.0
 text = "SETTINGS"
 
 [node name="ExitButton" parent="." instance=ExtResource( 3 )]
-margin_left = 496.0
-margin_top = 416.0
-margin_right = 528.0
-margin_bottom = 440.0
+margin_left = 495.0
+margin_top = 384.0
+margin_right = 527.0
+margin_bottom = 410.0
 text = "EXIT"

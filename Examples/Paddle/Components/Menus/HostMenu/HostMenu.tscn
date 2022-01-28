@@ -3,9 +3,9 @@
 [ext_resource path="res://Examples/Paddle/Assets/Themes/Heading.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Examples/Paddle/Assets/Themes/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://Examples/Paddle/Components/Menus/Button/Button.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Examples/Paddle/Components/Menus/SettingsMenu/SettingsMenu.gd" type="Script" id=4]
+[ext_resource path="res://Examples/Paddle/Components/Menus/HostMenu/HostMenu.gd" type="Script" id=4]
 
-[node name="SettingsMenu" type="Control"]
+[node name="HostMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
@@ -32,86 +32,101 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Panel"]
-margin_left = 80.0
+margin_left = 72.0
 margin_top = 16.0
-margin_right = 176.0
+margin_right = 184.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 1 )
-text = "SETTINGS"
+text = "HOST GAME"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MasterVolumeLabel" type="Label" parent="Panel"]
+[node name="NameLabel" type="Label" parent="Panel"]
 margin_left = 24.0
 margin_top = 64.0
-margin_right = 88.0
+margin_right = 67.0
 margin_bottom = 88.0
-text = "Master"
+text = "Name"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MasterVolumeSlider" type="HSlider" parent="Panel"]
-margin_left = 128.0
-margin_top = 64.0
-margin_right = 233.0
-margin_bottom = 88.0
-max_value = 1.0
-step = 0.05
+[node name="NameInput" type="LineEdit" parent="Panel"]
+margin_left = 92.0
+margin_top = 60.0
+margin_right = 236.0
+margin_bottom = 87.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MusicVolumeLabel" type="Label" parent="Panel"]
+[node name="PortLabel" type="Label" parent="Panel"]
 margin_left = 24.0
 margin_top = 96.0
-margin_right = 88.0
+margin_right = 58.0
 margin_bottom = 120.0
-text = "Music"
+text = "Port"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MusicVolumeSlider" type="HSlider" parent="Panel"]
-margin_left = 128.0
-margin_top = 96.0
-margin_right = 233.0
-margin_bottom = 120.0
-max_value = 1.0
-step = 0.05
+[node name="PortInput" type="LineEdit" parent="Panel"]
+margin_left = 156.0
+margin_top = 92.0
+margin_right = 236.0
+margin_bottom = 119.0
+max_length = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EffectsVolumeLabel" type="Label" parent="Panel"]
+[node name="MaxPlayersLabel" type="Label" parent="Panel"]
 margin_left = 24.0
 margin_top = 128.0
-margin_right = 88.0
+margin_right = 121.0
 margin_bottom = 152.0
-text = "Effects"
+text = "Max players"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EffectsVolumeSlider" type="HSlider" parent="Panel"]
-margin_left = 128.0
-margin_top = 128.0
-margin_right = 233.0
-margin_bottom = 152.0
-max_value = 1.0
-step = 0.05
+[node name="MaxPlayersInput" type="SpinBox" parent="Panel"]
+margin_left = 156.0
+margin_top = 124.0
+margin_right = 252.0
+margin_bottom = 151.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ApplyButton" parent="Panel" instance=ExtResource( 3 )]
-margin_left = 192.0
+[node name="PasswordLabel" type="Label" parent="Panel"]
+margin_left = 24.0
+margin_top = 160.0
+margin_right = 121.0
+margin_bottom = 184.0
+text = "Password"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PasswordInput" type="LineEdit" parent="Panel"]
+margin_left = 124.0
+margin_top = 156.0
+margin_right = 236.0
+margin_bottom = 183.0
+placeholder_text = "(none)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 196.0
 margin_top = 216.0
-margin_right = 240.0
+margin_right = 236.0
 margin_bottom = 242.0
-text = "APPLY"
+text = "HOST"
 
 [node name="BackButton" parent="Panel" instance=ExtResource( 3 )]
 margin_left = 24.0

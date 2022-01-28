@@ -9,11 +9,13 @@ func _ready():
 
 
 func _on_click():
-	$ClickSound.seek(0)
-	$ClickSound.play()
+	if !self.disabled:
+		$ClickSound.seek(0)
+		$ClickSound.play()
 
 
 
 func _on_hover():
-	$HoverSound.seek(0)
-	$HoverSound.play()
+	if !self.disabled:
+		$HoverSound.seek(0)
+		$HoverSound.play()

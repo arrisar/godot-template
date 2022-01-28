@@ -22,11 +22,11 @@ func _on_click_play():
 
 
 func _on_click_host():
-	pass
+	Menu.open('Host')
 
 
 func _on_click_join():
-	pass
+	Menu.open('Join')
 
 
 func _on_click_settings():

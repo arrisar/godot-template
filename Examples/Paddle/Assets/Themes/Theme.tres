@@ -1,10 +1,24 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
 
 [ext_resource path="res://Examples/Paddle/Assets/Fonts/PixelAE-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Examples/Paddle/Assets/Themes/ButtonEmpty.tres" type="StyleBox" id=2]
 [ext_resource path="res://Examples/Paddle/Assets/Themes/ButtonBorder.tres" type="StyleBox" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+extra_spacing_bottom = -4
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.188235, 0.188235, 0.219608, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0.12549, 0.12549, 0.156863, 1 )
+shadow_size = 4
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -25,3 +39,5 @@ Button/styles/focus = SubResource( 2 )
 Button/styles/hover = ExtResource( 3 )
 Button/styles/normal = ExtResource( 2 )
 Button/styles/pressed = ExtResource( 3 )
+LineEdit/fonts/font = SubResource( 4 )
+Panel/styles/panel = SubResource( 3 )
