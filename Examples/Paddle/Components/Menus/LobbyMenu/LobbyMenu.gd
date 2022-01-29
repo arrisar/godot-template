@@ -17,6 +17,7 @@ func _connect() -> void:
 	LeaveButton.connect('pressed', self, '_exit_lobby')
 	Client.connect('connection_closed', self, '_exit_lobby')
 	Client.connect('peer_list_updated', self, '_get_peers')
+	Client.connect('event', self, '_client_event')
 
 
 func _exit_tree() -> void:
@@ -24,6 +25,7 @@ func _exit_tree() -> void:
 	LeaveButton.disconnect('pressed', self, '_exit_lobby')
 	Client.disconnect('connection_closed', self, '_exit_lobby')
 	Client.disconnect('peer_list_updated', self, '_get_peers')
+	Client.disconnect('event', self, '_client_event')
 
 
 func _exit_lobby() -> void:
@@ -37,6 +39,7 @@ func _get_peers() -> void:
 
 
 func _update_peers(peers: Dictionary) -> void:
+	StartButton.disabled = true
 	PlayerList.clear()
 	
 	var i: int = 0
@@ -47,16 +50,20 @@ func _update_peers(peers: Dictionary) -> void:
 		if peers[id].is_host:
 			PlayerList.add_item(peers[id].name + ' (Host)')
 			PlayerList.move_item(i, 0)
-			if id == Client.peer_id:
-				StartButton.disabled = false
 		else:
 			PlayerList.add_item(peers[id].name)
-			StartButton.disabled = true
 
 		i += 1
+	
+	
+	if Client.host_id == Client.peer_id && PlayerList.get_item_count() > 1:
+		StartButton.disabled = false
 
 
 func _on_click_start() -> void:
-	Main.mount_game()
-	Menu.close('Lobby')
-	Menu.close('Main')
+	Client.send_event('start_game', null)
+
+
+func _client_event(event: String, _payload) -> void:
+	if event == 'start_game' && Client.get_sender_id() == 1:
+		Main.mount_game()

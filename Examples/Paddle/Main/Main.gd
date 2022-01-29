@@ -13,14 +13,16 @@ var MENUS = {
 
 
 func _ready():
+	Server.connect('event', self, '_server_event')
 	_register_audio()
 	_register_menus()
 	mount_title()
 
 
 func _exit_tree():
-	Client.close()
+	Server.disconnect('event', self, '_server_event')
 	Server.close()
+	Client.close()
 
 
 func _register_audio():
@@ -54,3 +56,8 @@ func mount_game():
 func _unmount_game():
 	if has_node('Game'):
 		$Game.queue_free()
+
+
+func _server_event(event: String, payload):
+	if event == 'start_game' && Server.get_sender_id() == Server.host_id:
+		Server.send_event('start_game', null)

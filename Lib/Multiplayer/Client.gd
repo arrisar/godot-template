@@ -73,7 +73,7 @@ func send_event(event: String, payload, unreliable: bool = false) -> void:
 
 remote func _receive_event(event, payload) -> void:
 	if multiplayer.get_rpc_sender_id() == 1:
-		emit_signal(event, payload)
+		emit_signal('event', event, payload)
 
 
 func set_own_state(state: Dictionary) -> void:
@@ -83,7 +83,7 @@ func set_own_state(state: Dictionary) -> void:
 
 func get_host_id(callback: FuncRef) -> void:
 	var callback_id: int = callback.get_instance_id()
-	print('[Client] Getting hots ID for callback with ID ', callback_id)
+	print('[Client] Getting host ID for callback with ID ', callback_id)
 	CALLBACKS[callback_id] = callback
 	rpc_id(1, '_get_host_id', callback_id)
 

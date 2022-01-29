@@ -10,6 +10,7 @@ signal process(delta)
 
 
 var PEERS: Dictionary
+var PROCESS: Dictionary
 
 var host_id: int
 var max_players: int
@@ -74,7 +75,6 @@ func reset() -> void:
 
 
 func send_event(event: String, payload, unreliable: bool = false) -> void:
-	print('[Server] Sending event "%s" to all peers' % event)
 	if unreliable:
 		rpc_unreliable('_receive_event', event, payload)
 	else:
@@ -90,14 +90,13 @@ func send_event_to(peer_id: int, event: String, payload, unreliable: bool = fals
 
 
 remote func _receive_event(event, payload) -> void:
-	print('[Server] Received event "%s"' % event)
 	emit_signal('event', event, payload)
 
 
 func _on_peer_connected(peer_id: int) -> void:
 	print('[Server] Peer connected with ID ', peer_id)
 	if host_id == 0: host_id = peer_id
-	PEERS[peer_id] = { is_host = host_id == peer_id }
+	PEERS[peer_id] = { id = peer_id, is_host = host_id == peer_id }
 	emit_signal('peer_connected', peer_id)
 	emit_signal('peer_list_updated')
 	rpc('_peer_list_updated')
@@ -113,20 +112,18 @@ func _on_peer_disconnected(peer_id: int) -> void:
 
 remote func _get_host_id(callback_id: int) -> void:
 	print('[Server] Host ID request received with ID ', callback_id)
-	var sender_id = multiplayer.get_rpc_sender_id()
-	rpc_id(sender_id, '_response', callback_id, host_id)
+	rpc_id(get_sender_id(), '_response', callback_id, host_id)
 
 
 remote func _get_peers(callback_id: int, peer_id: int = 0) -> void:
 	print('[Server] Peer request received with ID ', callback_id)
-	var sender_id = multiplayer.get_rpc_sender_id()
 	var response: Dictionary = PEERS[peer_id] if peer_id > 1 else PEERS
-	rpc_id(sender_id, '_response', callback_id, response)
+	rpc_id(get_sender_id(), '_response', callback_id, response)
 
 
 remote func _set_peer_state(peer_id: int, state: Dictionary) -> void:
 	var sender_id = multiplayer.get_rpc_sender_id()
-	print('[Server] Received set peer state request for peer %s from sender %s' % [peer_id, sender_id])
+	print('[Server] Received set peer state request for %s from %s' % [peer_id, sender_id])
 	if sender_id != peer_id: return
 	
 	var allowed_fields = ['name']

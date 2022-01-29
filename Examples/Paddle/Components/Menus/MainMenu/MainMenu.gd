@@ -5,7 +5,6 @@ onready var Main = get_node('/root/Main')
 
 
 func _ready():
-	Server.connect('peer_connected', self, '_on_connected')
 	$PlayButton.connect('pressed', self, '_on_click_play')
 	$HostButton.connect('pressed', self, '_on_click_host')
 	$JoinButton.connect('pressed', self, '_on_click_join')
@@ -14,7 +13,6 @@ func _ready():
 
 
 func _exit_tree():
-	Server.disconnect('peer_connected', self, '_on_connected')
 	$PlayButton.disconnect('pressed', self, '_on_click_play')
 	$HostButton.disconnect('pressed', self, '_on_click_host')
 	$JoinButton.disconnect('pressed', self, '_on_click_join')
@@ -23,6 +21,7 @@ func _exit_tree():
 
 
 func _on_click_play():
+	Server.connect('peer_connected', self, '_on_connected')
 	Server.create()
 	Client.create()
 
@@ -44,7 +43,7 @@ func _on_click_exit():
 
 
 func _on_connected(_peer_id):
-	print('[MainMenu] Connected')
+	Server.disconnect('peer_connected', self, '_on_connected')
 	Client.set_own_state({ name = Config.get('user/general/name', 'Player') })
 	Menu.close('Main')
 	Main.mount_game()

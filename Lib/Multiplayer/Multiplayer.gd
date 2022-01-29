@@ -31,3 +31,7 @@ func close(wait: int = 0):
 		network.close_connection(wait)
 		custom_multiplayer.set_network_peer(null)
 		network = null
+
+
+func get_sender_id() -> int:
+	return multiplayer.get_rpc_sender_id()

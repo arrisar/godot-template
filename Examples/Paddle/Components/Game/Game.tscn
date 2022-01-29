@@ -4,10 +4,8 @@
 [ext_resource path="res://Examples/Paddle/Assets/Themes/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://Examples/Paddle/Assets/Themes/Heading.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Examples/Paddle/Assets/Themes/Title.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Examples/Paddle/Components/Game/Player.gd" type="Script" id=5]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6, 40 )
+[ext_resource path="res://Examples/Paddle/Components/Ball/Ball.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Examples/Paddle/Components/Player/Player.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 2, 260 )
@@ -117,47 +115,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerOne" type="KinematicBody2D" parent="."]
+[node name="Field" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ball" parent="Field" instance=ExtResource( 5 )]
+position = Vector2( 512, 340 )
+
+[node name="PlayerOne" parent="Field" instance=ExtResource( 6 )]
 position = Vector2( 16, 300 )
-script = ExtResource( 5 )
 
-[node name="Fill" type="ColorRect" parent="PlayerOne"]
-margin_right = 12.0
-margin_bottom = 80.0
-color = Color( 0.941176, 0.941176, 0.941176, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Body" type="CollisionShape2D" parent="PlayerOne"]
-position = Vector2( 6, 40 )
-shape = SubResource( 1 )
-
-[node name="PlayerTwo" type="KinematicBody2D" parent="."]
+[node name="PlayerTwo" parent="Field" instance=ExtResource( 6 )]
 position = Vector2( 996, 300 )
-script = ExtResource( 5 )
 
-[node name="Fill" type="ColorRect" parent="PlayerTwo"]
-margin_right = 12.0
-margin_bottom = 80.0
-color = Color( 0.941176, 0.941176, 0.941176, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PlayerOneGoal" type="StaticBody2D" parent="Field"]
 
-[node name="Body" type="CollisionShape2D" parent="PlayerTwo"]
-position = Vector2( 6, 40 )
-shape = SubResource( 1 )
-
-[node name="PlayerOneGoal" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape" type="CollisionShape2D" parent="PlayerOneGoal"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Field/PlayerOneGoal"]
 position = Vector2( -10, 340 )
 shape = SubResource( 3 )
 
-[node name="PlayerTwoGoal" type="StaticBody2D" parent="."]
+[node name="PlayerTwoGoal" type="StaticBody2D" parent="Field"]
 
-[node name="CollisionShape" type="CollisionShape2D" parent="PlayerTwoGoal"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Field/PlayerTwoGoal"]
 position = Vector2( 1034, 340 )
 shape = SubResource( 2 )
 
