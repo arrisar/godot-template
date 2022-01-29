@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Examples/Paddle/Assets/Themes/Heading.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Examples/Paddle/Assets/Themes/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://Examples/Paddle/Components/Menus/Button/Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Examples/Paddle/Components/Menus/PauseMenu/PauseMenu.gd" type="Script" id=4]
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.12549, 0.12549, 0.12549, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 384.0
+margin_top = 172.0
+margin_right = 640.0
+margin_bottom = 428.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel"]
+margin_left = 80.0
+margin_top = 16.0
+margin_right = 176.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 1 )
+text = "PADDLE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReturnButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 63.0
+margin_top = 76.0
+margin_right = 193.0
+margin_bottom = 102.0
+text = "RETURN TO GAME"
+
+[node name="SettingsButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 92.0
+margin_top = 116.0
+margin_right = 164.0
+margin_bottom = 142.0
+text = "SETTINGS"
+
+[node name="ExitMenuButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 77.0
+margin_top = 156.0
+margin_right = 179.0
+margin_bottom = 182.0
+text = "EXIT TO MENU"
+
+[node name="ExitGameButton" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 89.0
+margin_top = 196.0
+margin_right = 167.0
+margin_bottom = 222.0
+text = "EXIT GAME"

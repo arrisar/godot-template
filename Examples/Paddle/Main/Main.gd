@@ -1,6 +1,7 @@
 extends Node
 
 
+onready var Game = preload('res://Examples/Paddle/Components/Game/Game.tscn')
 var MENUS = {
 	Main = 'res://Examples/Paddle/Components/Menus/MainMenu/MainMenu.tscn',
 	Host = 'res://Examples/Paddle/Components/Menus/HostMenu/HostMenu.tscn',
@@ -14,7 +15,12 @@ var MENUS = {
 func _ready():
 	_register_audio()
 	_register_menus()
-	_start()
+	mount_title()
+
+
+func _exit_tree():
+	Client.close()
+	Server.close()
 
 
 func _register_audio():
@@ -29,11 +35,22 @@ func _register_menus():
 		Menu.register(menu, MENUS[menu])
 
 
-func _start():
+func mount_title():
+	_unmount_game()
+	Menu.close_all()
 	Menu.open('Main')
 	$Music/MenuMusic.play()
+	$Music/GameMusic.stop()
 
+func mount_game():
+	_unmount_game()
+	var instance = Game.instance()
+	instance.name = 'Game'
+	add_child(instance)
+	Menu.close_all()
+	$Music/MenuMusic.stop()
+	$Music/GameMusic.play()
 
-func _mount_game():
-	Menu.open('Main')
-	$Music/MenuMusic.play()
+func _unmount_game():
+	if has_node('Game'):
+		$Game.queue_free()

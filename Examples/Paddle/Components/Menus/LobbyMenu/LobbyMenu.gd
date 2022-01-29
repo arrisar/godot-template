@@ -1,6 +1,7 @@
 extends Control
 
 
+onready var Main = get_node('/root/Main')
 onready var PlayerList = $Panel/PlayerList
 onready var StartButton = $Panel/StartButton
 onready var LeaveButton = $Panel/LeaveButton
@@ -56,4 +57,6 @@ func _update_peers(peers: Dictionary) -> void:
 
 
 func _on_click_start() -> void:
-	pass
+	Main.mount_game()
+	Menu.close('Lobby')
+	Menu.close('Main')

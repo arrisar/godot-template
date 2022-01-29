@@ -4,6 +4,7 @@ extends 'Multiplayer.gd'
 signal connected()
 signal connection_closed()
 signal connection_failed()
+signal event(event, payload)
 signal peer_connected(peer_id)
 signal peer_disconnected(peer_id)
 signal peer_list_updated(peers)
@@ -63,16 +64,35 @@ func reset() -> void:
 	password = ''
 
 
+func send_event(event: String, payload, unreliable: bool = false) -> void:
+	if unreliable:
+		rpc_unreliable_id(1, '_receive_event', event, payload)
+	else:
+		rpc_id(1, '_receive_event', event, payload)
+
+
+remote func _receive_event(event, payload) -> void:
+	if multiplayer.get_rpc_sender_id() == 1:
+		emit_signal(event, payload)
+
+
 func set_own_state(state: Dictionary) -> void:
 	print('[Client] Sending own peer state')
-	rpc('_set_peer_state', peer_id, state)
+	rpc_id(1, '_set_peer_state', peer_id, state)
+
+
+func get_host_id(callback: FuncRef) -> void:
+	var callback_id: int = callback.get_instance_id()
+	print('[Client] Getting hots ID for callback with ID ', callback_id)
+	CALLBACKS[callback_id] = callback
+	rpc_id(1, '_get_host_id', callback_id)
 
 
 func get_peers(callback: FuncRef, peer_id: int = 0) -> void:
 	var callback_id: int = callback.get_instance_id()
 	print('[Client] Getting peers for callback with ID ', callback_id)
 	CALLBACKS[callback_id] = callback
-	rpc('_get_peers', callback_id, peer_id)
+	rpc_id(1, '_get_peers', callback_id, peer_id)
 
 
 remote func _response(callback_id: int, response) -> void:
@@ -96,6 +116,7 @@ func _on_connection_failed() -> void:
 func _on_connection_success() -> void:
 	peer_id = multiplayer.get_network_unique_id()
 	print('[Client] Connected with ID ', peer_id)
+	get_host_id(funcref(self, '_set_host_id'))
 	emit_signal('connected')
 
 
@@ -112,3 +133,8 @@ func _on_peer_disconnected(peer_id: int) -> void:
 remote func _peer_list_updated() -> void:
 	print('[Client] Server peer list updated')
 	emit_signal('peer_list_updated')
+
+
+func _set_host_id(id: int) -> void:
+	print('[Client] Setting host ID to ', id)
+	host_id = id
